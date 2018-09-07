@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>TravelNeo</title>
+  <title>Puskesmas Mulyoharjo Pemalang</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <link rel="icon" href="{{url('img/logo.png')}}" type="image/x-icon">
+  <link rel="icon" href="{{url('img/logo50.png')}}" type="image/x-icon">
 
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -27,6 +27,8 @@
 
   {{-- datepicker --}}
   <link rel="stylesheet" type="text/css" href="{{ asset('plugins/datepicker/datepicker3.css') }}">
+
+  <link rel="stylesheet" type="text/css" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,14 +78,19 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
-          <a href="{{url('user')}}">
-            <i class="fa fa-home"></i> <span>Home</span>
-          </a>
-        </li>
           <li class="treeview">
-            <a href="{{url('user')}}">
-              <i class="fa fa-users"></i> <span>User</span>
+              <a href="{{url('/')}}">
+                <i class="fa fa-home"></i> <span>Home</span>
+              </a>
+          </li>
+          <li class="treeview">
+            <a href="{{url('/pasien')}}">
+              <i class="fa fa-users"></i> <span> Pasien</span>
+            </a>
+          </li>
+          <li class="treeview">
+            <a href="{{url('/periksa')}}">
+              <i class="fa fa-users"></i> <span> Periksa</span>
             </a>
           </li>
       </ul>
@@ -102,7 +109,7 @@
       </h1>
       <ol class="breadcrumb">
         @section('breadcrumb')
-        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
         @show
       </ol>
     </section>
@@ -117,11 +124,11 @@
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      TravelNeo
+      Puskesmas Mulyoharjo Pemalang
     </div>
-    <strong> Created by: TravelNeo</strong>
+    <strong> Sistem Arsip</strong>
   </footer>
-
+</div>
   <!-- jQuery 2.2.3 -->
   <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
   <!-- Bootstrap 3.3.6 -->
@@ -141,7 +148,22 @@
   <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
   {{-- validator.js --}}
   <script src="{{ asset('js/validator.js') }}"></script>
+  <!-- Bootstrap WYSIHTML5 -->
+  <script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 
+  <script type="text/javascript">
+  var url = window.location;
+
+  // for sidebar menu entirely but not cover treeview
+  $('ul.sidebar-menu a').filter(function() {
+    return this.href == url;
+  }).parent().siblings().removeClass('active').end().addClass('active');
+
+  // for treeview
+  $('ul.treeview-menu a').filter(function() {
+    return this.href == url;
+  }).parentsUntil(".sidebar-menu > .treeview-menu").siblings().removeClass('active').end().addClass('active');
+  </script>
 @yield('script')
 </body>
 </html>
