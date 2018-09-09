@@ -169,12 +169,12 @@ $(function(){
 
    $('#modal-form form').validator().on('submit', function(e){
        if(!e.isDefaultPrevented()){
-         var id = $('#id').val();
+         var idea = $('#idea').val();
          if (save_method == "add") {
            url = "{{ route('periksa.store') }}";
          }
          else {
-            url = id+"/update";
+            url = idea+"/update";
          }
 
           $.ajax({
@@ -183,7 +183,7 @@ $(function(){
             data : $('#modal-form form').serialize(),
             success : function(data){
                  $('#modal-form').modal('hide');
-                 window.location.reload(true);
+                 table1.ajax.reload();
             },
             error : function(){
               alert("Tidak dapat menyimpan data!");
@@ -263,16 +263,23 @@ function editForm(id){
    $('input[name=_method]').val('PATCH');
    $('#modal-form form')[0].reset();
    $.ajax({
-     url : id,
+     url : id+"/edit",
      type : "GET",
      dataType : "JSON",
      success : function(data){
        $('#modal-form').modal('show');
-       $('.modal-title').text('Edit Keywords');
+       $('.modal-title').text('Edit Hasil Periksa Pasien');
 
-       $('#idea').val(data.id_key);
-       $('#nama').val(data.periksa);
-       $('#respon').val(data.respon);
+       $('#idea').val(data.id_periksa);
+       //$("#date").prop('disabled', true);
+       $('#date').val(data.tanggal_periksa);
+       $('#diagnosa ~ iframe').contents().find('.wysihtml5-editor').html(data.diagnosa);
+       $('#penyakit ~ iframe').contents().find('.wysihtml5-editor').html(data.penyakit);
+       $('#obat ~ iframe').contents().find('.wysihtml5-editor').html(data.obat);
+       $('#catatan ~ iframe').contents().find('.wysihtml5-editor').html(data.catatan);
+       // $('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html(data.penyakit);
+       // $('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html(data.riwayat_penyakit);
+       // $('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html(data.riwayat_penyakit);
      },
      error : function(){
        alert("Tidak dapat menampilkan data!");

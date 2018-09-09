@@ -24,12 +24,12 @@
 
   {{-- dataTables css --}}
   <link rel="stylesheet" type="text/css" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('plugins/datatables/jquery.dataTables_themeroller.css') }}">
 
   {{-- datepicker --}}
   <link rel="stylesheet" type="text/css" href="{{ asset('plugins/datepicker/datepicker3.css') }}">
 
   <link rel="stylesheet" type="text/css" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
-
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -93,6 +93,11 @@
               <i class="fa fa-users"></i> <span> Periksa</span>
             </a>
           </li>
+          <li class="treeview">
+            <a href="{{url('/Arsip')}}">
+              <i class="fa fa-book"></i> <span> Arsip</span>
+            </a>
+          </li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -133,7 +138,9 @@
   <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
   <!-- Bootstrap 3.3.6 -->
   <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('plugins/jQueryUI/jquery-ui.min.js') }}"></script>
   <!-- SlimScroll -->
+  <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
   <!-- FastClick -->
   <script src="{{ asset('plugins/fastclick/fastclick.js') }}"></script>
@@ -142,7 +149,6 @@
   <!-- AdminLTE for demo purposes -->
   <script src="{{ asset('dist/js/demo.js') }}"></script>
   {{-- datatables --}}
-  <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
   {{-- datepicker --}}
   <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>

@@ -15,16 +15,21 @@
     <div class="box">
       <div class="box-header">
         <a onclick="addForm()" class="btn btn-success"><i class="fa fa-plus-circle"></i> Tambah</a>
-        {{-- <label for="desa"> Desa</label>
+        <label for="desa"> Desa</label>
         <input data-column="6" type="text" name="desa" id="desa">
         <label for="nama"> nama</label>
-        <input type="text" name="nama" id="nama"> --}}
+        <input data-column="2" type="text" name="nama" id="nama">
+        <label for="">From</label>
+          <input id="min" type="text" name="min">
+        <label for="">To</label>
+          <input id="max" type="text" name="max">
+
       </div>
       <div class="box-body">
 
 <form method="post" id="form-pasien">
 {{ csrf_field() }}
-<table class="table table-striped" id="tablex">
+<table class="table table-striped" id="table">
 <thead>
    <tr>
       <th width="20">No</th>
@@ -55,11 +60,20 @@
 var table, save_method;
 
 $(function(){
-
-  $('#date').datepicker({
-    format: 'yyyy-mm-dd',
-    autoclose: true
+  table = $('#table').DataTable({
+    "processing" : true,
+    "serverside" : true,
+    "ajax" : {
+      "url" : "{{ route('pasien.data') }}",
+      "type" : "GET",
+    },
+    'columnDefs': [{
+        'targets': 0,
+        'searchable': true,
+        'orderable': false
+     }],
   });
+
   $('.textarea').wysihtml5({
     toolbar: {
       "html": false, //Button which allows you to edit the generated HTML. Default false
@@ -67,34 +81,12 @@ $(function(){
       "image": false, //Button to insert an image. Default true,
     }
   });
-   table = $('.table').DataTable({
-     "processing" : true,
-     "serverside" : true,
-     "ajax" : {
-       "url" : "{{ route('pasien.data') }}",
-       "type" : "GET"
-     },
-     'columnDefs': [{
-         'targets': 0,
-         'searchable': true,
-         'orderable': false
-      }],
-      'order': [1, 'desc']
+
+   $('#desa, #nama').on( 'keyup click', function () {   // for text boxes
+     var i =$(this).attr('data-column');  // getting column index
+     var v =$(this).val();  // getting search input value
+     table.columns(i).search(v).draw();
    });
-
-   // $('#nama').keyup(function(){
-   //     table.search($(this).val()).draw();
-   //   });
-   //
-   // $('#desa').keyup(function(){
-   //     table.search($(this).val()).draw();
-   //   });
-
-   // $('#desa').on( 'keyup click', function () {   // for text boxes
-   //     var i =$(this).attr('data-column');  // getting column index
-   //     var v =$(this).val();  // getting search input value
-   //     table.columns(i).search(v).draw();
-   // } );
 
   $('#modal-form form').validator().on('submit', function(e){
       if(!e.isDefaultPrevented()){
@@ -118,7 +110,6 @@ $(function(){
      }
    });
 });
-
 
 
 function addForm(){

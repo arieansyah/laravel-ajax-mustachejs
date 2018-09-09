@@ -54,7 +54,9 @@ class PeriksaController extends Controller
         $row[] = $no;
         $row[] = $list->tanggal_periksa;
         $row[] = "<div class='btn-group'>
-                  <a onclick='detailInfo(".$list->id_periksa.")' class='btn btn-primary btn-sm'><i class='fa fa-eye'></i></a>";
+                  <a onclick='editForm(".$list->id_periksa.")' class='btn btn-success btn-sm'><i class='fa fa-edit'></i></a>
+                  <a onclick='detailInfo(".$list->id_periksa.")' class='btn btn-primary btn-sm'><i class='fa fa-eye'></i></a>
+                  <a onclick='deleteData(".$list->id_periksa.")' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>";
         $data[] = $row;
       }
 
@@ -115,7 +117,8 @@ class PeriksaController extends Controller
      */
     public function edit($id)
     {
-        //
+      $show = PeriksaPasien::find($id);
+      echo json_encode($show);
     }
 
     /**
@@ -127,7 +130,13 @@ class PeriksaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $store = PeriksaPasien::find($id);
+      $store->tanggal_periksa = $request->date;
+      $store->diagnosa = $request->diagnosa;
+      $store->penyakit = $request->penyakit;
+      $store->obat = $request->obat;
+      $store->catatan = $request->catatan;
+      $store->update();
     }
 
     /**
@@ -138,6 +147,7 @@ class PeriksaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hapus = PeriksaPasien::find($id);
+        $hapus->delete();
     }
 }

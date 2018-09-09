@@ -31,7 +31,7 @@ class PasienController extends Controller
           $row[] = $no;
           $row[] = $list->kode_pasien;
           $row[] = $list->nama;
-          $row[] = $list->tempat.", ".$list->tanggal_lahir;
+          $row[] = Carbon::parse($list->tanggal_lahir)->format('d/m//Y');
           $row[] = $list->jenis_kelamin;
           $row[] = Pasien::age();
           $row[] = $list->desa;

@@ -11,6 +11,7 @@
    </div>
 
 <div class="modal-body">
+    <input type="hidden" id="idea" name="idea" >
    <input type="hidden" id="id" name="id" value="{{$periksa->kode_pasien}}">
    <div class="form-group">
       <label for="date" class="col-md-3 control-label">Tanggal Periksa</label>

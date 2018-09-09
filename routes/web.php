@@ -15,14 +15,6 @@ Route::get('/', function () {
     return view('admin.index');
 });
 
-Route::get('/oke', function () {
-    return view('dokter.index');
-});
-
-Route::get('/tes', function () {
-    return view('base');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -34,6 +26,7 @@ Route::resource('pasien', 'PasienController');
 Route::get('periksa/data', 'PeriksaController@listData')->name('periksa.data');
 Route::get('periksa/{kode}/dataPeriksa', 'PeriksaController@listDataPeriksa')->name('periksa.dataPeriksa');
 Route::get('periksa/{kode}/showHasil', 'PeriksaController@showHasil');
+Route::patch('periksa/{kode}/update', 'PeriksaController@update');
 Route::resource('periksa', 'PeriksaController');
 Route::get('periksa/{kode}', 'PeriksaController@show');
 
