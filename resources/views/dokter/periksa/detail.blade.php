@@ -197,7 +197,7 @@ $(function(){
         if(!e.isDefaultPrevented()){
           var id = $('#id').val();
           url = id+"/riwayat";
-          if (save_method == "add") {
+          if (save_method == "riwayat") {
             url = id+"/riwayat";
           }
           else {

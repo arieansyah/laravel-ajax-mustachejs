@@ -31,7 +31,7 @@ class PasienController extends Controller
           $row[] = $no;
           $row[] = $list->kode_pasien;
           $row[] = $list->nama;
-          $row[] = Carbon::parse($list->tanggal_lahir)->format('d/m//Y');
+          $row[] = Carbon::parse($list->tanggal_lahir)->format('d/m/Y');
           $row[] = $list->jenis_kelamin;
           $row[] = Pasien::age();
           $row[] = $list->desa;
@@ -87,7 +87,7 @@ class PasienController extends Controller
      */
     public function show($id)
     {
-      $find = Pasien::leftJoin('periksa_pasiens', 'periksa_pasiens.pasien_kode', '=', 'pasiens.kode_pasien')->where('kode_pasien', $id)->first();
+      $find = Pasien::leftJoin('riwayat_pasiens', 'riwayat_pasiens.pasien_kode', '=', 'pasiens.kode_pasien')->where('kode_pasien', $id)->first();
       echo json_encode($find);
     }
 

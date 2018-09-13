@@ -15,20 +15,9 @@
     <div class="box">
       <div class="box-header">
         <a onclick="addForm()" class="btn btn-success"><i class="fa fa-plus-circle"></i> Tambah</a>
-        <label for="desa"> Desa</label>
-        <input data-column="6" type="text" name="desa" id="desa">
-        <label for="nama"> nama</label>
-        <input data-column="2" type="text" name="nama" id="nama">
-        <label for="">From</label>
-          <input id="min" type="text" name="min">
-        <label for="">To</label>
-          <input id="max" type="text" name="max">
-
       </div>
       <div class="box-body">
 
-<form method="post" id="form-pasien">
-{{ csrf_field() }}
 <table class="table table-striped" id="table">
 <thead>
    <tr>
@@ -44,7 +33,6 @@
 </thead>
 <tbody></tbody>
 </table>
-</form>
 
       </div>
     </div>
@@ -82,12 +70,6 @@ $(function(){
     }
   });
 
-   $('#desa, #nama').on( 'keyup click', function () {   // for text boxes
-     var i =$(this).attr('data-column');  // getting column index
-     var v =$(this).val();  // getting search input value
-     table.columns(i).search(v).draw();
-   });
-
   $('#modal-form form').validator().on('submit', function(e){
       if(!e.isDefaultPrevented()){
          var id = $('#id').val();
@@ -110,7 +92,6 @@ $(function(){
      }
    });
 });
-
 
 function addForm(){
    save_method = "add";
@@ -170,7 +151,7 @@ function detailInfo(id){
       $('.alamat').text(add);
       $('.desa').text(data.desa);
 
-      $('.riwayat_penyakit').text(data.riwayat_penyakit);
+      $('.riwayat_penyakit').html(data.riwayat_penyakit);
 
 
     },

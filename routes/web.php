@@ -33,3 +33,8 @@ Route::get('periksa/{kode}', 'PeriksaController@show');
 Route::post('periksa/{kode}/riwayat', 'RiwayatPenyakitController@store');
 Route::get('periksa/{kode}/editRiwayat', 'RiwayatPenyakitController@edit');
 Route::patch('periksa/{kode}/updateRiwayat', 'RiwayatPenyakitController@update');
+//Route::post('periksa/{kode}/updateRiwayat', 'RiwayatPenyakitController@store');
+
+Route::get('arsip/data', 'ArsipController@listData')->name('arsip.data');
+Route::get('arsip/{id}/print', 'ArsipController@printPasien');
+Route::resource('arsip', 'ArsipController');

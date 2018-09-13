@@ -94,7 +94,7 @@
             </a>
           </li>
           <li class="treeview">
-            <a href="{{url('/Arsip')}}">
+            <a href="{{url('/arsip')}}">
               <i class="fa fa-book"></i> <span> Arsip</span>
             </a>
           </li>
