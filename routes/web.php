@@ -16,6 +16,7 @@ Auth::routes();
 $this->get('logout', 'Auth\LoginController@logout');
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['web', 'cekuser:1']], function(){
   // Route::get('/', function () {
