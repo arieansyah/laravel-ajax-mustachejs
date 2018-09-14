@@ -11,30 +11,39 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin.index');
-});
 
 Auth::routes();
+$this->get('logout', 'Auth\LoginController@logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['web', 'cekuser:1']], function(){
+  // Route::get('/', function () {
+  //   return view('admin.index');
+  // });
+  Route::get('pasien/data', 'PasienController@listData')->name('pasien.data');
+  Route::resource('pasien', 'PasienController');
+
+  Route::get('arsip/data', 'ArsipController@listData')->name('arsip.data');
+  Route::get('arsip/{id}/print', 'ArsipController@printPasien');
+  Route::resource('arsip', 'ArsipController');
+});
+
+Route::group(['middleware' => ['web', 'cekuser:2']], function(){
+  // Route::get('/', function () {
+  //   return view('dokter.index');
+  // });
+  Route::get('periksa/data', 'PeriksaController@listData')->name('periksa.data');
+  Route::get('periksa/{kode}/dataPeriksa', 'PeriksaController@listDataPeriksa')->name('periksa.dataPeriksa');
+  Route::get('periksa/{kode}/showHasil', 'PeriksaController@showHasil');
+  Route::patch('periksa/{kode}/update', 'PeriksaController@update');
+  Route::resource('periksa', 'PeriksaController');
+  Route::get('periksa/{kode}', 'PeriksaController@show');
+
+  Route::post('periksa/{kode}/riwayat', 'RiwayatPenyakitController@store');
+  Route::get('periksa/{kode}/editRiwayat', 'RiwayatPenyakitController@edit');
+  Route::patch('periksa/{kode}/updateRiwayat', 'RiwayatPenyakitController@update');
+  //Route::post('periksa/{kode}/updateRiwayat', 'RiwayatPenyakitController@store');
+});
+
 Route::get('/tes', 'PasienController@age');
-
-Route::get('pasien/data', 'PasienController@listData')->name('pasien.data');
-Route::resource('pasien', 'PasienController');
-
-Route::get('periksa/data', 'PeriksaController@listData')->name('periksa.data');
-Route::get('periksa/{kode}/dataPeriksa', 'PeriksaController@listDataPeriksa')->name('periksa.dataPeriksa');
-Route::get('periksa/{kode}/showHasil', 'PeriksaController@showHasil');
-Route::patch('periksa/{kode}/update', 'PeriksaController@update');
-Route::resource('periksa', 'PeriksaController');
-Route::get('periksa/{kode}', 'PeriksaController@show');
-
-Route::post('periksa/{kode}/riwayat', 'RiwayatPenyakitController@store');
-Route::get('periksa/{kode}/editRiwayat', 'RiwayatPenyakitController@edit');
-Route::patch('periksa/{kode}/updateRiwayat', 'RiwayatPenyakitController@update');
-//Route::post('periksa/{kode}/updateRiwayat', 'RiwayatPenyakitController@store');
-
-Route::get('arsip/data', 'ArsipController@listData')->name('arsip.data');
-Route::get('arsip/{id}/print', 'ArsipController@printPasien');
-Route::resource('arsip', 'ArsipController');

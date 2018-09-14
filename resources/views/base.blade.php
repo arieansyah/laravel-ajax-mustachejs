@@ -61,7 +61,6 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-
           <li><a href="{{url('logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
           <!-- Control Sidebar Toggle Button -->
         </ul>
@@ -83,21 +82,27 @@
                 <i class="fa fa-home"></i> <span>Home</span>
               </a>
           </li>
-          <li class="treeview">
-            <a href="{{url('/pasien')}}">
-              <i class="fa fa-users"></i> <span> Pasien</span>
-            </a>
-          </li>
-          <li class="treeview">
-            <a href="{{url('/periksa')}}">
-              <i class="fa fa-users"></i> <span> Periksa</span>
-            </a>
-          </li>
-          <li class="treeview">
-            <a href="{{url('/arsip')}}">
-              <i class="fa fa-book"></i> <span> Arsip</span>
-            </a>
-          </li>
+
+          @if (Auth::user()->level == 1)
+
+            <li class="treeview">
+              <a href="{{url('/pasien')}}">
+                <i class="fa fa-users"></i> <span> Pasien</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="{{url('/arsip')}}">
+                <i class="fa fa-book"></i> <span> Arsip</span>
+              </a>
+            </li>
+
+          @else
+            <li class="treeview">
+              <a href="{{url('/periksa')}}">
+                <i class="fa fa-users"></i> <span> Periksa</span>
+              </a>
+            </li>
+          @endif
       </ul>
     </section>
     <!-- /.sidebar -->
