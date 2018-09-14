@@ -7,6 +7,7 @@ use App\PeriksaPasien;
 use App\Pasien;
 use PDF;
 use DataTables;
+use Carbon\carbon;
 
 class ArsipController extends Controller
 {
@@ -21,7 +22,9 @@ class ArsipController extends Controller
     }
 
     public function listData(){
-      $pasien = PeriksaPasien::leftJoin('pasiens', 'pasiens.kode_pasien', '=', 'periksa_pasiens.pasien_kode')->get();
+      $pasien = PeriksaPasien::leftJoin('pasiens', 'pasiens.kode_pasien', '=', 'periksa_pasiens.pasien_kode')
+      ->orderBy('id_periksa', 'desc')
+      ->get();
       $no = 0;
       $data = array();
       foreach($pasien as $list){
@@ -30,7 +33,7 @@ class ArsipController extends Controller
         $row[] = $no;
         $row[] = $list->kode_pasien;
         $row[] = $list->nama;
-        $row[] = $list->tanggal_periksa;
+        $row[] = Carbon::parse($list->tanggal_periksa)->format('d/m/Y');
         $row[] = $list->jenis_kelamin;
         $row[] = $list->desa;
         $row[] = "<div class='btn-group'>

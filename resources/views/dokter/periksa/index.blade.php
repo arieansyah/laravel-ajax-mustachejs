@@ -51,7 +51,8 @@ var table, save_method;
 $(function(){
 
   $('#date').datepicker({
-    format: 'yyyy-mm-dd',
+    format: 'd MM yyyy',
+    todayHighlight: true,
     autoclose: true
   });
   $('.textarea').wysihtml5({

@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="panel-footer text-right">
-            <input type="button" onClick="this.form.reset()" value="Reset">
+            <input type="button" onClick="clearForm(this.form);" value="Reset">
           </div>
         </form>
       </div>
@@ -43,7 +43,7 @@
             <input data-column="2" type="text" name="namax" id="namax">
           </div>
           <div class="panel-footer text-right">
-            <input type="button" onClick="this.form.reset()" value="Reset">
+            <input type="button" onClick="clearForm(this.form);" value="Reset">
           </div>
         </form>
       </div>
@@ -60,7 +60,7 @@
             <input data-column="6" type="text" name="desax" id="desax">
           </div>
           <div class="panel-footer text-right">
-            <input type="button" onClick="this.form.reset()" value="Reset">
+            <input type="button" onClick="clearForm(this.form);" value="Reset">
           </div>
         </form>
       </div>
@@ -147,7 +147,10 @@ $(function(){
 
   $('.input-daterange').datepicker({
     clearBtn: true,
+    format: 'dd/mm/yyyy',
+    autoclose: true,
     todayHighlight: true
+
 	});
 
 	$('.input-daterange').on('change', function() {
@@ -233,6 +236,10 @@ $.fn.dataTableExt.afnFiltering.push(
 		}
 	}
 );
+
+function clearForm(form){
+  form.reset();
+}
 
 function addForm(){
    save_method = "add";

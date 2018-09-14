@@ -48,6 +48,13 @@
 var table, save_method;
 
 $(function(){
+
+  $('#date').datepicker({
+    format: 'd MM yyyy',
+    autoclose: true,
+    todayHighlight: true
+   });
+
   table = $('#table').DataTable({
     "processing" : true,
     "serverside" : true,

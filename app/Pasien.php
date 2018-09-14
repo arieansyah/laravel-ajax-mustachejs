@@ -1,13 +1,23 @@
 <?php
 
 namespace App;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Pasien extends Model
 {
   protected $table = 'pasiens';
   protected $primaryKey = 'id_pasien';
+  protected $dates = ['tanggal_lahir'];
+
+  public function getTanggalLahirAttribute($value){
+     return Carbon::parse($value)->format('d F Y');
+
+	}
+
+  public function setTanggalLahirAttribute($date){
+		 $this->attributes['tanggal_lahir'] = Carbon::createFromFormat('d F Y', $date)->format('Y-m-d');
+	}
 
   public static function generateKode() {
       $number = mt_rand(10000, 99999); // better than rand()

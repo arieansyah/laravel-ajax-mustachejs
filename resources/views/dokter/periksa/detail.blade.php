@@ -155,9 +155,9 @@ $(function(){
   });
 
   $('#date').datepicker({
-    todayHighlight: true,
-    format: 'yyyy-mm-dd',
-    autoclose: true
+    format: 'd MM yyyy',
+    autoclose: true,
+    todayHighlight: true
   });
   $('.textarea').wysihtml5({
     toolbar: {

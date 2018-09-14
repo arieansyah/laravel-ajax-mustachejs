@@ -44,7 +44,7 @@
           <div class="col-sm-1">
             :
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6">
             <span class="tempat"></span>,
             <span class="date"></span>
           </div>
