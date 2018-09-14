@@ -183,7 +183,7 @@ $(function(){
             data : $('#modal-form form').serialize(),
             success : function(data){
                  $('#modal-form').modal('hide');
-                 table1.ajax.reload();
+                 table.ajax.reload();
             },
             error : function(){
               alert("Tidak dapat menyimpan data!");

@@ -57,7 +57,7 @@
         <form>
 
           <div class="panel-body">
-            <input data-column="6" type="text" name="desax" id="desax">
+            <input data-column="5" type="text" name="desax" id="desax">
           </div>
           <div class="panel-footer text-right">
             <input type="button" onClick="clearForm(this.form);" value="Reset">

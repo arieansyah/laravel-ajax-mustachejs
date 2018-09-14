@@ -115,11 +115,15 @@ class PasienController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $age = Carbon::parse($request->date);
+      $usia = $age->diffInYears(Carbon::now());
+      
       $pasien = Pasien::find($id);
       $pasien->nama = $request->nama;
       $pasien->tempat = $request->tempat;
       $pasien->tanggal_lahir = $request->date;
       $pasien->jenis_kelamin = $request->jenis_kelamin;
+      $pasien->usia = $usia;
       $pasien->alamat = $request->alamat;
       $pasien->desa = $request->desa;
       $pasien->save();
