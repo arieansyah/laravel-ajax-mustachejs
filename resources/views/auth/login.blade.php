@@ -46,10 +46,18 @@
           </div>
         </div>
 
-        <div class="col-xs-4">
+        {{-- <div class="col-xs-4">
+          <a href="{{route('register')}}">Register</a>
+        </div> --}}
+        <div class="col-xs-4 pull-right">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
 
+      </div>
+      <div class="row">
+        <div class="col-xs-3 pull-right">
+          <a href="{{route('register')}}">Register</a>
+        </div>
       </div>
     </form>
 
