@@ -1,7 +1,11 @@
 @extends('base')
 
 @section('title')
-  Edit Admin
+  Setting
+
+  <a href="{{url('/register')}}">
+    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button>
+  </a>
 @endsection
 
 @section('breadcrumb')
@@ -24,6 +28,8 @@
     <i class="icon fa fa-check"></i>
     Perubahan berhasil disimpan.
   </div>
+
+
 
   <div class="form-group">
       <label for="nama" class="col-md-2 control-label">Nama</label>

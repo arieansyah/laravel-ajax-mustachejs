@@ -62,18 +62,6 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="level" class="col-md-4 control-label">User</label>
-                          <div class="col-md-6">
-                            <select id="level" type="text" class="form-control" name="level" required>
-                              <option value=""> -- Pilih User-- </option>
-                              <option value="1">Admin</option>
-                              <option value="2">Dokter</option>
-                            </select>
-                            <span class="help-block with-errors"></span>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
