@@ -54,11 +54,11 @@
         </div>
 
       </div>
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-xs-3 pull-right">
           <a href="{{route('register')}}">Register</a>
         </div>
-      </div>
+      </div> --}}
     </form>
 
   </div>

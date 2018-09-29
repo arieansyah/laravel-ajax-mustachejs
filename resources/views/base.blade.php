@@ -95,6 +95,16 @@
                 <i class="fa fa-book"></i> <span> Arsip</span>
               </a>
             </li>
+            <li class="treeview">
+              <a href="{{url('/dokter')}}">
+                <i class="fa fa-user-secret"></i> <span> Dokter</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="{{url('/setting')}}">
+                <i class="fa fa-gear"></i> <span> Setting</span>
+              </a>
+            </li>
 
           @else
             <li class="treeview">

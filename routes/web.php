@@ -18,6 +18,8 @@ $this->get('logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//admin
 Route::group(['middleware' => ['web', 'cekuser:1']], function(){
   // Route::get('/', function () {
   //   return view('admin.index');
@@ -28,8 +30,15 @@ Route::group(['middleware' => ['web', 'cekuser:1']], function(){
   Route::get('arsip/data', 'ArsipController@listData')->name('arsip.data');
   Route::get('arsip/{id}/print', 'ArsipController@printPasien');
   Route::resource('arsip', 'ArsipController');
+
+  Route::get('dokter/data', 'AdminController@listData')->name('dokter.data');
+  Route::resource('dokter', 'AdminController');
+
+  Route::resource('setting', 'SettingController');
 });
 
+
+//dokter
 Route::group(['middleware' => ['web', 'cekuser:2']], function(){
   // Route::get('/', function () {
   //   return view('dokter.index');

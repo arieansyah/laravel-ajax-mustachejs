@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\RiwayatPasien;
+use App\User;
+use Auth;
+use Hash;
 
-class RiwayatPenyakitController extends Controller
+class SettingController extends Controller
 {
-  public function __construct(){
-    $this->middleware('auth');
-  }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +16,8 @@ class RiwayatPenyakitController extends Controller
      */
     public function index()
     {
-        //
+      $user = User::all();
+      return view('admin.setting.index', compact('user'));
     }
 
     /**
@@ -38,10 +38,7 @@ class RiwayatPenyakitController extends Controller
      */
     public function store(Request $request)
     {
-      $save = new RiwayatPasien;
-      $save->pasien_kode = $request->id;
-      $save->riwayat_penyakit = $request->riwayat_penyakit;
-      $save->save();
+        //
     }
 
     /**
@@ -63,8 +60,8 @@ class RiwayatPenyakitController extends Controller
      */
     public function edit($id)
     {
-        $edit = RiwayatPasien::where('pasien_kode', $id)->first();
-        echo json_encode($edit);
+      $user = User::find($id);
+      echo json_encode($user);
     }
 
     /**
@@ -76,9 +73,21 @@ class RiwayatPenyakitController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $edit = RiwayatPasien::where('pasien_kode', $id)->first();
-      $edit->riwayat_penyakit = $request->riwayat_penyakit;
-      $edit->update();
+      $msg = 'succcess';
+      $user = User::find($id);
+
+        if(!empty($request['password'])){
+            if(Hash::check($request['passwordlama'], $user->password)){
+             $user->password = bcrypt($request['password']);
+            }else{
+             $msg = 'error';
+            }
+        }
+
+      $user->name = $request['name'];
+      $user->email = $request['email'];
+      $user->update();
+      echo json_encode(array('msg'=>$msg));
     }
 
     /**
