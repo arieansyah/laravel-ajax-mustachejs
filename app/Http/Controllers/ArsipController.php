@@ -49,7 +49,9 @@ class ArsipController extends Controller
     }
 
     public function printPasien($id){
-      $arsip = Pasien::leftJoin('riwayat_pasiens', 'riwayat_pasiens.pasien_kode', '=', 'pasiens.kode_pasien')->where('kode_pasien', $id)->first();
+      $arsip = Pasien::join('riwayat_pasiens', 'riwayat_pasiens.pasien_kode', '=', 'pasiens.kode_pasien')
+      ->join('periksa_pasiens', 'periksa_pasiens.pasien_kode', '=', 'pasiens.kode_pasien')
+      ->where('kode_pasien', $id)->first();
   		$dompdf = PDF::loadView('admin.arsip.print', compact('arsip'));
       $dompdf->setPaper('a4', 'potrait');
   		return $dompdf->stream($arsip->kode_pasien.'_'.$arsip->nama.'.pdf');

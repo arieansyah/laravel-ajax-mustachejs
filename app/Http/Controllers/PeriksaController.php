@@ -6,6 +6,7 @@ use App\Pasien;
 use App\RiwayatPasien;
 use App\PeriksaPasien;
 use DataTables;
+use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -141,6 +142,16 @@ class PeriksaController extends Controller
       $store->obat = $request->obat;
       $store->catatan = $request->catatan;
       $store->update();
+    }
+
+    public function CetakPasien($id)
+    {
+      $arsip = Pasien::join('riwayat_pasiens', 'riwayat_pasiens.pasien_kode', '=', 'pasiens.kode_pasien')
+      ->join('periksa_pasiens', 'periksa_pasiens.pasien_kode', '=', 'pasiens.kode_pasien')
+      ->where('kode_pasien', $id)->first();
+  		$dompdf = PDF::loadView('admin.arsip.print', compact('arsip'));
+      $dompdf->setPaper('a4', 'potrait');
+  		return $dompdf->stream($arsip->kode_pasien.'_'.$arsip->nama.'.pdf');
     }
 
     /**

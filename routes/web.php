@@ -46,6 +46,7 @@ Route::group(['middleware' => ['web', 'cekuser:2']], function(){
   Route::get('periksa/data', 'PeriksaController@listData')->name('periksa.data');
   Route::get('periksa/{kode}/dataPeriksa', 'PeriksaController@listDataPeriksa')->name('periksa.dataPeriksa');
   Route::get('periksa/{kode}/showHasil', 'PeriksaController@showHasil');
+  Route::get('periksa/{kode}/print', 'PeriksaController@CetakPasien');
   Route::patch('periksa/{kode}/update', 'PeriksaController@update');
   Route::resource('periksa', 'PeriksaController');
   Route::get('periksa/{kode}', 'PeriksaController@show');
@@ -53,6 +54,8 @@ Route::group(['middleware' => ['web', 'cekuser:2']], function(){
   Route::post('periksa/{kode}/riwayat', 'RiwayatPenyakitController@store');
   Route::get('periksa/{kode}/editRiwayat', 'RiwayatPenyakitController@edit');
   Route::patch('periksa/{kode}/updateRiwayat', 'RiwayatPenyakitController@update');
+
+  Route::resource('setdokter', 'SetDokterController');
   //Route::post('periksa/{kode}/updateRiwayat', 'RiwayatPenyakitController@store');
 });
 

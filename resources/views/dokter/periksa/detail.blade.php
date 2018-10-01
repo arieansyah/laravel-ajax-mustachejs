@@ -70,6 +70,7 @@
           </div>
         </div>
         <div class="panel-footer text-right">
+          <a target='_blank' href='{{$periksa->kode_pasien}}/print' class='btn btn-danger'><i class='fa fa-print'> Cetak Data Pasien</i></a>
           <a onclick="addForm({{$periksa->kode_pasien}})" class="btn btn-success"><i class="fa fa-plus-circle"></i> Tambah Hasil Periksa Pasien</a>
         </div>
       </div>

@@ -112,6 +112,11 @@
                 <i class="fa fa-users"></i> <span> Periksa</span>
               </a>
             </li>
+            <li class="treeview">
+              <a href="{{url('/setdokter')}}">
+                <i class="fa fa-gear"></i> <span> Setting</span>
+              </a>
+            </li>
           @endif
       </ul>
     </section>
