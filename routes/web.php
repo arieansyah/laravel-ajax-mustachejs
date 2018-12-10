@@ -24,6 +24,10 @@ Route::group(['middleware' => ['web', 'cekuser:1']], function(){
   // Route::get('/', function () {
   //   return view('admin.index');
   // });
+
+  Route::get('analisa', 'AnalisaController@index');
+  Route::post('analisa', 'AnalisaController@hasilProses');
+
   Route::get('pasien/data', 'PasienController@listData')->name('pasien.data');
   Route::resource('pasien', 'PasienController');
 
@@ -46,10 +50,14 @@ Route::group(['middleware' => ['web', 'cekuser:2']], function(){
   Route::get('periksa/data', 'PeriksaController@listData')->name('periksa.data');
   Route::get('periksa/{kode}/dataPeriksa', 'PeriksaController@listDataPeriksa')->name('periksa.dataPeriksa');
   Route::get('periksa/{kode}/showHasil', 'PeriksaController@showHasil');
-  Route::get('periksa/{kode}/print', 'PeriksaController@CetakPasien');
-  Route::patch('periksa/{kode}/update', 'PeriksaController@update');
+  Route::get('periksa/{id}/show/edit', 'PeriksaController@showEdit');
+  Route::patch('periksa/{id}/show/edit/update', 'PeriksaController@update');
+  Route::patch('periksa/{id}/show/edit/{id_penyakit}/updatePenyakit', 'PeriksaController@updatePenyakit');
+  Route::get('periksa/{id}/show/edit/{id_penyakit}', 'PeriksaController@editPenyakit');
+  Route::delete('periksa/{id}/show/edit/{id_penyakit}/delete', 'PeriksaController@delete');
   Route::resource('periksa', 'PeriksaController');
   Route::get('periksa/{kode}', 'PeriksaController@show');
+  Route::get('periksa/{id}/print', 'PeriksaController@printPasien');
 
   Route::post('periksa/{kode}/riwayat', 'RiwayatPenyakitController@store');
   Route::get('periksa/{kode}/editRiwayat', 'RiwayatPenyakitController@edit');

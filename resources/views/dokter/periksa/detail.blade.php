@@ -70,7 +70,6 @@
           </div>
         </div>
         <div class="panel-footer text-right">
-          <a target='_blank' href='{{$periksa->kode_pasien}}/print' class='btn btn-danger'><i class='fa fa-print'> Cetak Data Pasien</i></a>
           <a onclick="addForm({{$periksa->kode_pasien}})" class="btn btn-success"><i class="fa fa-plus-circle"></i> Tambah Hasil Periksa Pasien</a>
         </div>
       </div>
@@ -274,8 +273,8 @@ function editForm(id){
        $('#idea').val(data.id_periksa);
        //$("#date").prop('disabled', true);
        $('#date').val(data.tanggal_periksa);
+       $('#penyakit').val(data.penyakit);
        $('#diagnosa ~ iframe').contents().find('.wysihtml5-editor').html(data.diagnosa);
-       $('#penyakit ~ iframe').contents().find('.wysihtml5-editor').html(data.penyakit);
        $('#obat ~ iframe').contents().find('.wysihtml5-editor').html(data.obat);
        $('#catatan ~ iframe').contents().find('.wysihtml5-editor').html(data.catatan);
        // $('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html(data.penyakit);
@@ -298,10 +297,10 @@ function detailInfo(id){
     success : function(data){
 
 
-      $('.diagnosa').html(data.diagnosa);
-      $('.penyakit').html(data.penyakit);
-      $('.obat').html(data.obat);
-      $('.catatan').html(data.catatan);
+      $('.diagnosa').html(data.tampil.diagnosa);
+      $('.penyakit').html(data.get);
+      $('.obat').html(data.tampil.obat);
+      $('.catatan').html(data.tampil.catatan);
 
     },
     error : function(){
@@ -325,4 +324,5 @@ function deleteData(id){
    }
 }
 </script>
+<script src="{{ asset('js/penyakit.js') }}"></script>
 @endsection

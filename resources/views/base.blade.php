@@ -100,6 +100,13 @@
                 <i class="fa fa-user-secret"></i> <span> Dokter</span>
               </a>
             </li>
+
+            <li class="treeview">
+              <a href="{{url('/analisa')}}">
+                <i class="fa fa-percent"></i> <span> Analisa Penyakit</span>
+              </a>
+            </li>
+
             <li class="treeview">
               <a href="{{url('/setting')}}">
                 <i class="fa fa-gear"></i> <span> Setting</span>
@@ -155,7 +162,9 @@
   </footer>
 </div>
   <!-- jQuery 2.2.3 -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
   <!-- Bootstrap 3.3.6 -->
   <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('plugins/jQueryUI/jquery-ui.min.js') }}"></script>

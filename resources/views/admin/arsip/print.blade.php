@@ -22,70 +22,72 @@
         <tr>
           <td>Kode Pasien </td>
           <td> : </td>
-          <td> {{$arsip->kode_pasien}}</td>
+          <td> {{$pasien->kode_pasien}}</td>
         </tr>
 
         <tr>
           <td>Nama </td>
           <td> : </td>
-          <td> {{$arsip->nama}}</td>
+          <td> {{$pasien->nama}}</td>
         </tr>
 
         <tr>
           <td>Tempat, Tanggal Lahir </td>
           <td> : </td>
-          <td> {{$arsip->tempat}}, {{$arsip->tanggal_lahir}}</td>
+          <td> {{$pasien->tempat}}, {{$pasien->tanggal_lahir}}</td>
         </tr>
 
         <tr>
           <td>Jenis Kelamain </td>
           <td> : </td>
-          <td> {{$arsip->jenis_kelamin}}</td>
+          <td> {{$pasien->jenis_kelamin}}</td>
         </tr>
 
         <tr>
           <td>Usia </td>
           <td> : </td>
-          <td> {{$arsip->usia}}</td>
+          <td> {{$pasien->usia}}</td>
         </tr>
 
         <tr>
           <td>Alamat </td>
           <td> : </td>
-          <td> {{strip_tags($arsip->alamat)}}</td>
+          <td> {{strip_tags($pasien->alamat)}}</td>
         </tr>
 
         <tr>
           <td>Desa </td>
           <td> : </td>
-          <td> {{$arsip->desa}}</td>
+          <td> {{$pasien->desa}}</td>
         </tr>
       </table>
     </li>
     <br>
     <li class="list-group-item"><strong>Riwayat Penyakit</strong></li>
     <li class="list-group-item">
-      {!! $arsip->riwayat_penyakit !!}
+      {!! $riwayat->riwayat_penyakit !!}
     </li>
     <br>
     <li class="list-group-item"><strong>Diagnosa</strong></li>
     <li class="list-group-item">
-      {!! $arsip->diagnosa !!}
+      {!! $periksa->diagnosa !!}
     </li>
     <br>
     <li class="list-group-item"><strong>Penyakit</strong></li>
     <li class="list-group-item">
-      {!! $arsip->penyakit !!}
+      @foreach ($penyakit as $value)
+        -{!! $value->penyakit !!}<br>
+      @endforeach
     </li>
     <br>
     <li class="list-group-item"><strong>Obat</strong></li>
     <li class="list-group-item">
-      {!! $arsip->obat !!}
+      {!! $periksa->obat !!}
     </li>
     <br>
     <li class="list-group-item"><strong>Catatan</strong></li>
     <li class="list-group-item">
-      {!! $arsip->catatan !!}
+      {!! $periksa->catatan !!}
     </li>
   </ul>
 

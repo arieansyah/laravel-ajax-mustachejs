@@ -18,7 +18,6 @@ class CreatePeriksaPasiensTable extends Migration
             $table->bigInteger('pasien_kode');
             $table->date('tanggal_periksa');
             $table->text('diagnosa');
-            $table->text('penyakit');
             $table->text('obat');
             $table->text('catatan');
             $table->timestamps();

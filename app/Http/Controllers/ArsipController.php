@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PeriksaPasien;
 use App\Pasien;
+use App\RiwayatPasien;
+use App\PeriksaPasien;
+use App\Penyakit;
 use PDF;
 use DataTables;
 use Carbon\carbon;
@@ -49,12 +51,13 @@ class ArsipController extends Controller
     }
 
     public function printPasien($id){
-      $arsip = Pasien::join('riwayat_pasiens', 'riwayat_pasiens.pasien_kode', '=', 'pasiens.kode_pasien')
-      ->join('periksa_pasiens', 'periksa_pasiens.pasien_kode', '=', 'pasiens.kode_pasien')
-      ->where('kode_pasien', $id)->first();
-  		$dompdf = PDF::loadView('admin.arsip.print', compact('arsip'));
+      $pasien = Pasien::where('kode_pasien', $id)->first();
+      $riwayat = RiwayatPasien::where('pasien_kode', $id)->first();
+      $periksa = PeriksaPasien::where('pasien_kode', $id)->first();
+      $penyakit = Penyakit::leftJoin('periksa_pasiens', 'periksa_pasiens.id_periksa', '=', 'penyakits.periksa_id')->where('pasien_kode', $id)->get();
+      $dompdf = PDF::loadView('dokter.periksa.print', compact('pasien', 'riwayat', 'periksa', 'penyakit'));
       $dompdf->setPaper('a4', 'potrait');
-  		return $dompdf->stream($arsip->kode_pasien.'_'.$arsip->nama.'.pdf');
+      return $dompdf->stream($pasien->kode_pasien.'_'.$pasien->nama.'.pdf');
     }
 
     /**

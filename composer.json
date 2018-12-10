@@ -10,7 +10,7 @@
         "laravel/tinker": "~1.0",
         "yajra/laravel-datatables-oracle": "~8.0",
         "barryvdh/laravel-dompdf": "^0.8.0",
-        "dompdf/dompdf": "0.8.0 as 0.6.2"
+        "dompdf/dompdf": "0.8.2 as 0.6.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
